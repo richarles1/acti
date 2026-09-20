@@ -1,0 +1,8 @@
+streamlit
+pandas
+numpy
+opencv-python-headless
+pillow
+easyocr
+pyzbar
+pdf417decoder
