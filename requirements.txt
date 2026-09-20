@@ -1,0 +1,12 @@
+--find-links https://pytorch.org
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
+streamlit
+pandas
+numpy
+opencv-python-headless
+pillow
+easyocr
+pyzbar
+pdf417decoder
+
