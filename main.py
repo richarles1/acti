@@ -931,8 +931,7 @@ elif st.session_state.step == "step_3":
     MODEL_DIR = os.path.join(os.path.dirname(__file__), "models")
     os.makedirs(MODEL_DIR, exist_ok=True) # Ensure directory exists
 
-    REQUIRED_MODELS = [os.path.join(MODEL_DIR, "english_g2.pth")]
-
+    
     # Define your remote URLs and where they should map locally
     MODEL_MAPPING = {
         "craft_mlt_25k.pth": "https://github.com/richarles1/acti/releases/download/nouveau/craft_mlt_25k.pth",
