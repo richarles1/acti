@@ -1,13 +1,9 @@
---extra-index-url https://download.pytorch.org/whl/cpu
-torch
-torchvision
 streamlit
 pandas
 numpy
 opencv-python-headless
 pillow
 easyocr
-pyzbar
-pdf417decoder
+ 
 
 
