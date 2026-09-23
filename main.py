@@ -14,8 +14,8 @@ import urllib.request
 import warnings
 import cv2
 import re
-from pyzbar.pyzbar import decode as decode_qr
-from pdf417decoder import PDF417Decoder
+#from pyzbar.pyzbar import decode as decode_qr
+#from pdf417decoder import PDF417Decoder
 
 #python -m streamlit run main.py
 
