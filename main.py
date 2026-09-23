@@ -9,6 +9,7 @@ from PIL import Image
 import easyocr
 import numpy as np
 import os
+import gc
 import urllib.request
 import warnings
 import cv2
@@ -939,10 +940,14 @@ elif st.session_state.step == "step_3":
             # Prevents EasyOCR from trying to reach the internet
             download_enabled=False 
         )
-
+        # Force Python to clear setup memory bloat instantly
+        gc.collect() 
+        return reader   
     # Initialize the reader using the cached resource
     try:
-        reader = load_ocr_model()
+        if 'ocr_reader' not in st.session_state:
+            st.session_state['ocr_reader'] = load_ocr_model()
+        reader = st.session_state['ocr_reader']
     except Exception as e:
         st.error(f"❌ **Failed to initialize EasyOCR from local directory:** {e}")
         st.stop()
