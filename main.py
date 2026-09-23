@@ -927,28 +927,8 @@ elif st.session_state.step == "step_3":
     #    return easyocr.Reader(['fr', 'en'], gpu=False, recog_network='standard', detector='dbnet18')
     #reader = load_ocr_reader()
     ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    # Define the absolute or relative path to your pre-loaded models folder
+    # Define the path to your pre-loaded models folder
     MODEL_DIR = os.path.join(os.path.dirname(__file__), "models")
-    os.makedirs(MODEL_DIR, exist_ok=True) # Ensure directory exists
-
-    
-    # Define your remote URLs and where they should map locally
-    MODEL_MAPPING = {
-        "craft_mlt_25k.pth": "https://github.com/richarles1/acti/releases/download/nouveau/craft_mlt_25k.pth",
-        "english_g2.pth": "https://github.com/richarles1/acti/releases/download/nouveau/english_g2.pth"
-
-    }
-
-    # 1. Download files programmatically if they don't exist locally
-    for filename, url in MODEL_MAPPING.items():
-        local_path = os.path.join(MODEL_DIR, filename)
-        if not os.path.exists(local_path):
-            with st.spinner(f"Downloading {filename} from custom server..."):
-                try:
-                    urllib.request.urlretrieve(url, local_path)
-                except Exception as e:
-                    st.error(f"Failed to download {filename} from {url}: {e}")
-                    st.stop()
 
     @st.cache_resource
     def load_ocr_model():
@@ -956,13 +936,15 @@ elif st.session_state.step == "step_3":
             ['en'], 
             gpu=False, 
             model_storage_directory=MODEL_DIR, 
-            download_enabled=False # Keep false since you already downloaded them manually
+            # Prevents EasyOCR from trying to reach the internet
+            download_enabled=False 
         )
 
+    # Initialize the reader using the cached resource
     try:
         reader = load_ocr_model()
     except Exception as e:
-        st.error(f"❌ **Failed to initialize EasyOCR:** {e}")
+        st.error(f"❌ **Failed to initialize EasyOCR from local directory:** {e}")
         st.stop()
 
     ####@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
