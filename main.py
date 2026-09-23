@@ -935,8 +935,9 @@ elif st.session_state.step == "step_3":
 
     # Define your remote URLs and where they should map locally
     MODEL_MAPPING = {
-        "craft_mlt_25k.pth": "https://github.com/richarles1/acti/releases/download/nouveau/craft_mlt_25k.pth"
-       
+        "craft_mlt_25k.pth": "https://github.com/richarles1/acti/releases/download/nouveau/craft_mlt_25k.pth",
+        "english_g2.pth": "https://github.com/richarles1/acti/releases/download/nouveau/english_g2.pth"
+
     }
 
     # 1. Download files programmatically if they don't exist locally
